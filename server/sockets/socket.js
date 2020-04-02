@@ -5,39 +5,13 @@ const ticketControl = new TicketControl();
 
 io.on('connection', (client) => {
 
-    console.log('Usuario conectado');
+    client.on('siguienteTicket', (data, callback) => {
 
-    client.emit('enviarMensaje', {
-        usuario: 'Administrador',
-        mensaje: 'Bienvenido a esta aplicación'
-    });
+        let siguiente = ticketControl.siguiente();
 
+        console.log(siguiente);
 
-
-    client.on('disconnect', () => {
-        console.log('Usuario desconectado');
-    });
-
-    // Escuchar el cliente
-    client.on('enviarMensaje', (data, callback) => {
-
-        console.log(data);
-
-        client.broadcast.emit('enviarMensaje', data);
-
-
-        // if (mensaje.usuario) {
-        //     callback({
-        //         resp: 'TODO SALIO BIEN!'
-        //     });
-
-        // } else {
-        //     callback({
-        //         resp: 'TODO SALIO MAL!!!!!!!!'
-        //     });
-        // }
-
-
+        callback(siguiente);
 
     });
 
