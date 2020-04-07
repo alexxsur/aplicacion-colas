@@ -42,14 +42,16 @@ class TicketControl {
         if (this.tickets.length === 0) {
             return 'No hay tickets';
         }
+
         let numeroTicket = this.tickets[0].numero;
         this.tickets.shift();
 
         let atenderTicket = new Ticket(numeroTicket, escritorio);
+
         this.ultimos4.unshift(atenderTicket);
 
         if (this.ultimos4.length > 4) {
-            this.ultimos4.splice(-1, 1); // Borra el último
+            this.ultimos4.splice(-1, 1); // borra el último
         }
 
         console.log('Ultimos 4');
