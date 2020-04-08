@@ -34,6 +34,10 @@ io.on('connection', (client) => {
         callback(atenderTicket);
 
         // actualizar/notificar cambios en los ultimos 4
+        client.broadcast.emit('ultimos4', {
+            ultimos4: ticketControl.getUltimos4()
+        });
+
 
     });
 
